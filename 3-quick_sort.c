@@ -26,6 +26,7 @@ static int lomuto(int *array, size_t size, int lo, int hi)
 			tmp = array[i];
 			array[i] = array[j];
 			array[j] = tmp;
+			print_array(array, size);
 		}
 	}
 
