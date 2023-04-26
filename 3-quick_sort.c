@@ -4,12 +4,10 @@
 
 /**
  * swap - swaps two integers in an array
- * @array: array
- * @size: size of the array
  * @a: first integer
  * @b: second integer
  */
-void swap(int *array, size_t size, int *a, int *b)
+void swap(int *a, int *b)
 {
 	int tmp;
 
@@ -39,12 +37,12 @@ static int lomuto(int *array, size_t size, int lo, int hi)
 	{
 		if (array[j] <= pivot)
 		{
-			swap(array, size, &array[i], &array[j]);
+			swap(&array[i], &array[j]);
 			i++;
 		}
 	}
 
-	swap(array, size, &array[i], &array[hi]);
+	swap(&array[i], &array[hi]);
 	print_array(array, size);
 	return (i);
 }
