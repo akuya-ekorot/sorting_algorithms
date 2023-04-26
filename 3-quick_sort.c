@@ -3,6 +3,23 @@
 #include "sort.h"
 
 /**
+ * swap - swaps two integers in an array
+ * @array: array
+ * @size: size of the array
+ * @a: first integer
+ * @b: second integer
+ */
+void swap(int *array, size_t size, int *a, int *b)
+{
+	int tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+
+}
+
+/**
  * lomuto - lomuto partition algo for qs
  * @array: the array to sort
  * @size: size of the array
@@ -13,29 +30,22 @@
  */
 static int lomuto(int *array, size_t size, int lo, int hi)
 {
-	int i, j, pivot, tmp;
+	int i, j, pivot;
 
-	i = lo - 1;
 	pivot = array[hi];
+	i = lo;
 
 	for (j = lo; j < hi; j++)
 	{
 		if (array[j] <= pivot)
 		{
-			++i;
-			tmp = array[i];
-			array[i] = array[j];
-			array[j] = tmp;
-			print_array(array, size);
+			swap(array, size, &array[i], &array[j]);
+			i++;
 		}
 	}
 
-	++i;
-	tmp = array[i];
-	array[i] = array[hi];
-	array[hi] = tmp;
+	swap(array, size, &array[i], &array[hi]);
 	print_array(array, size);
-
 	return (i);
 }
 
