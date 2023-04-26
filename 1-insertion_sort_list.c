@@ -78,7 +78,7 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *current, *curr, *node;
 
-	if (*list)
+	if (list && *list)
 	{
 		current = *list;
 
@@ -92,5 +92,4 @@ void insertion_sort_list(listint_t **list)
 			current = current->next;
 		}
 	}
-
 }
