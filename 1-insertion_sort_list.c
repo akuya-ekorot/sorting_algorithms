@@ -3,6 +3,34 @@
 #include "sort.h"
 
 /**
+ * swap - swap nodes in a doubly linked list
+ * @list: doubly linked list
+ * @node1: node
+ * @node2: node
+ */
+
+void swap(listint_t **list, listint_t *node1, listint_t *node2)
+{
+	node1->next = node2->next;
+
+	if (node2->next)
+		node2->next->prev = node1;
+
+	node2->prev = node1->prev;
+
+	if (node1->prev)
+		node1->prev->next = node2;
+	else
+		*list = node2;
+	
+
+	node1->prev = node2;
+	node2->next = node1;
+
+	print_list(*list);
+}
+
+/**
  * insert - insert node in its ordered position in a doubly linked list
  * @list: list of nodes
  * @node1: node being inserted
@@ -51,18 +79,19 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *current, *curr, *node;
 
-	current = *list;
-	while (current)
+	if (*list)
 	{
-		curr = current;
-		node = current;
+		current = *list;
 
-		while (curr->prev && (node->n < curr->prev->n))
-			curr = curr->prev;
+		while (current)
+		{
+			curr = current;
+			node = current;
 
-		if (node != curr)
-			insert(list, node, curr);
-
-		current = current->next;
+			while (curr->prev && (node->n < curr->prev->n))
+				swap(list, curr->prev, node);
+			current = current->next;
+		}
 	}
+
 }
